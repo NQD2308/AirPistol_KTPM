@@ -8,6 +8,7 @@ import com.mycompany.models.Athlete;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 import java.util.List;
 
 /**
@@ -23,6 +24,14 @@ public class Competition {
         this.groups = new ArrayList<>();
     }
     
+    // Phương thức hiển thị danh sách thông tin các vận động viên
+    public String displayAthletes() {
+        return athletes.stream()
+                .map(Athlete::toString)
+                .collect(Collectors.joining("\n"));
+    }
+
+    
     // Phương thức sắp xếp vận động viên và phân chia thành các nhóm
     public void sortAndGroupAthletes() {
         athletes.sort(Comparator.comparingInt(Athlete::getWorldRank).reversed());
@@ -33,6 +42,10 @@ public class Competition {
         }
     }
 
+    public List<Athlete> getAthletes() {
+        return athletes;
+    }
+    
     public List<List<Athlete>> getGroups() {
         return groups;
     }
