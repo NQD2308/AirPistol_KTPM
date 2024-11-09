@@ -17,21 +17,18 @@ public class Athlete {
     private int id;
     private String firstName;   
     private String lastName;
-    private String country;
+    private Country country;
     private double score;
     private int worldRank;
     private Boolean restrictedCountry;
     private List<Double> shots;
     
     // Danh sách các quốc gia bị hạn chế
-    private static final Set<String> RESTRICTED_COUNTRIES = Set.of("Russia", "Belarus");
+//    private static final Set<String> RESTRICTED_COUNTRIES = Set.of("Russia", "Belarus");
     
     // Constructor
-    public Athlete(int id, String firstName, String lastName, String country, double score, int worldRank,
-    Boolean restrictedCountry){
-        if (country == null || country.trim().isEmpty()) {
-            throw new IllegalArgumentException("Country cannot be null or empty.");
-        }
+    public Athlete(int id, String firstName, String lastName, Country country, double score, int worldRank){
+      
         if (score < 0 || score > 654.0) {
             throw new IllegalArgumentException("Score must be between 0 and 654.0.");
         }
@@ -46,46 +43,14 @@ public class Athlete {
         this.score = score;
         this.worldRank = worldRank;
         this.shots = new ArrayList<>();
-        this.restrictedCountry = RESTRICTED_COUNTRIES.contains(country);
-        
-        // Nếu vận động viên đến từ quốc gia bị hạn chế, họ sẽ thi đấu dưới danh nghĩa "Neutral Athletes"
-        if (this.restrictedCountry) {
-            this.country = "Neutral Athletes";
-        }
-    }
-    
-    // Constructor
-    public Athlete(int id, String firstName, String lastName, String country, double score, int worldRank){
-        if (country == null || country.trim().isEmpty()) {
-            throw new IllegalArgumentException("Country cannot be null or empty.");
-        }
-        if (score < 0 || score > 654.0) {
-            throw new IllegalArgumentException("Score must be between 0 and 654.0.");
-        }
-        if (worldRank <= 0) {
-            throw new IllegalArgumentException("World rank must be a positive integer.");
-        }
-        
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.country = country;
-        this.score = score;
-        this.worldRank = worldRank;
-        this.shots = new ArrayList<>();
-        this.restrictedCountry = RESTRICTED_COUNTRIES.contains(country);
-        
-        // Nếu vận động viên đến từ quốc gia bị hạn chế, họ sẽ thi đấu dưới danh nghĩa "Neutral Athletes"
-        if (this.restrictedCountry) {
-            this.country = "Neutral Athletes";
-        }
+
     }
     
     // Getters and Setters
     public String getFirstName() { return firstName; }
     public String getLastName() { return lastName; }
     public int getID() { return id; }
-    public String getCountry() { return country; }
+    public Country getCountry() { return country; }
     public double getScore() { return score; }
     public int getWorldRank() { return worldRank; }
     public void setScore(double score) { this.score = score; }

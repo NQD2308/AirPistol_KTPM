@@ -23,6 +23,8 @@ public class CompetitionTest {
         athletes = new ArrayList<>();
         for (int i = 1; i <= 54; i++) {
             athletes.add(new Athlete(i, "Athlete" + i, "LastName" + i, "Country" + i, 0.0, 55 - i));
+//                        athletes.add(new Athlete(i, "Athlete" + String.valueOf(i), "LastName" + String.valueOf(i), "Country" + i, 0.0, 55 - i));
+
         }
         competition = new Competition(athletes);
         competition.sortAndGroupAthletes();
